@@ -1,17 +1,52 @@
-# Building a simple End-to-End Data Engineering System 
-This project uses different tools such as kafka, airflow, spark, postgres and docker. 
+# End-to-End Data Engineering System
 
-A step by step guide to run this pipeline: https://medium.com/@hamzagharbi_19502/end-to-end-data-engineering-system-on-real-data-with-kafka-spark-airflow-postgres-and-docker-a70e18df4090
+This project demonstrates how to build a simple **End-to-End Data Engineering System** using a combination of popular tools like Kafka, Airflow, Spark, PostgreSQL, and Docker. It provides a comprehensive solution for streaming, processing, and managing data pipelines.
+
+---
 
 ## Overview
 
-1. Data Streaming: Initially, data is streamed from the API into a Kafka topic.
-  
-2. Data Processing: A Spark job then takes over, consuming the data from the Kafka topic and transferring it to a PostgreSQL database.
-   
-3. Scheduling with Airflow: Both the streaming task and the Spark job are orchestrated using Airflow. While in a real-world scenario, the Kafka producer would constantly listen to the API, for demonstration purposes, we'll schedule the Kafka streaming task to run daily. Once the streaming is complete, the Spark job processes the data, making it ready for use by the LLM application.
+This system involves the following steps:
 
-All of these tools will be built and run using docker, and more specifically docker-compose.
+1. **Data Streaming**:
+   - Data is streamed from an external API into a Kafka topic.
 
-![chatuml-diagram](https://github.com/HamzaG737/data-engineering-project/assets/71135893/ce92b731-038a-4d9c-9722-f97a6ba51153)
+2. **Data Processing**:
+   - A Spark job consumes the data from the Kafka topic and transfers it to a PostgreSQL database for storage and further analysis.
 
+3. **Scheduling with Airflow**:
+   - Airflow orchestrates the pipeline, scheduling the Kafka streaming task and the Spark job. For demonstration purposes, the Kafka producer is scheduled to run daily, simulating a real-world scenario of constant data ingestion.
+
+4. **Containerization**:
+   - All tools are built and run using Docker and Docker Compose, ensuring a seamless and portable deployment.
+
+---
+
+## Technologies Used
+
+- **Apache Kafka**: For real-time data streaming.
+- **Apache Spark**: For data processing and transformation.
+- **Apache Airflow**: For pipeline orchestration and scheduling.
+- **PostgreSQL**: For storing processed data.
+- **Docker & Docker Compose**: For containerizing and managing the deployment of the system.
+
+---
+
+## System Architecture
+
+The pipeline consists of the following components:
+
+1. **Kafka Producer**:
+   - Listens to an external API and streams data into a Kafka topic.
+
+2. **Kafka Topic**:
+   - Acts as a message queue to hold the streaming data.
+
+3. **Spark Job**:
+   - Consumes data from the Kafka topic, processes it, and writes it to PostgreSQL.
+
+4. **PostgreSQL**:
+   - Serves as the data warehouse for processed data.
+
+5. **Airflow DAGs**:
+   - Automate and schedule the Kafka producer and Spark job.
